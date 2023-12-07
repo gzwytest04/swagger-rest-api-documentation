@@ -29,9 +29,13 @@ public class ProductsController {
 
     @RequestMapping(path = "{id}", method = RequestMethod.GET)
     @ApiOperation("Gets the product with specific id")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = Product.class)})
-    public Product getProduct(@PathVariable(name = "id") String id) {
-        return productsService.getProduct(id);
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "OK", response = Product.class),
+        @ApiResponse(code = 500, message = "Fail"),
+        @ApiResponse(code = 501, message = "Fail", response = Product.class)
+        })
+    public Product getProduct_more_response(@PathVariable(name = "id") String id) {
+        return productsService.getProduct_more_response(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
